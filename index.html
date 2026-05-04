@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tomoro Coffee WiFi</title>
+
+  <style>
+    body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #3e2723, #1b1b1b);
+  color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 100vh; /* penting */
+  padding: 16px;
+}
+
+    .container {
+  text-align: center;
+  background: rgba(255,255,255,0.05);
+  padding: 24px;
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+
+  animation: fadeIn 0.6s ease;
+  width: 100%;
+  max-width: 380px; /* lebih kecil biar pas di HP */
+}
+
+    .logo {
+      width: 150px;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      margin: 10px 0;
+      font-size: 22px;
+    }
+
+    .wifi-box {
+      background: rgba(255,255,255,0.08);
+      padding: 15px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    button {
+      padding: 12px;
+      border: none;
+      border-radius: 999px;
+      font-size: 15px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+      transition: 0.3s;
+    }
+
+    .primary {
+      background: #c8a97e;
+      color: black;
+      font-weight: bold;
+    }
+
+    .secondary {
+      background: #ffffff10;
+      color: white;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .footer {
+      font-size: 11px;
+      opacity: 0.5;
+      margin-top: 15px;
+    }
+    @keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+    
+    @media (max-height: 700px) {
+  body {
+    align-items: flex-start;
+  }
+  button {
+  padding: 14px;
+  font-size: 16px; /* biar gampang dipencet */
+  }
+  .container {
+  animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- LOGO -->
+    <img src="images/mulyosari.png" class="logo" alt="Tomoro Coffee">
+
+    <h1>Free WiFi Access</h1>
+
+    <div class="wifi-box">
+      <p><strong>SSID:</strong> Tommunity Mulyosari</p>
+      <p><strong>Password:</strong> <span id="pass">PesanDulu</span></p>
+      <button class="secondary" onclick="copyPassword()">Copy Password</button>
+    </div>
+
+    <button class="primary" onclick="connectWifi()">Connect WiFi</button>
+    <button class="secondary" onclick="redirectPromo()">Lihat Promo</button>
+
+    <div class="footer">
+      Powered by Tomoro Coffee - Mulyosari
+    </div>
+
+  </div>
+
+  <script>
+    function connectWifi() {
+      const ua = navigator.userAgent.toLowerCase();
+
+      if (ua.includes("android")) {
+        window.location.href = "intent:#Intent;action=android.settings.WIFI_SETTINGS;end";
+      } 
+      else if (ua.includes("iphone") || ua.includes("ipad")) {
+        alert("Buka Settings > WiFi lalu pilih 'Tommunity Mulyosari'");
+      } 
+      else {
+        alert("Silakan buka pengaturan WiFi dan pilih jaringan.");
+      }
+    }
+
+    function copyPassword() {
+      const password = document.getElementById("pass").innerText;
+      navigator.clipboard.writeText(password);
+      alert("Password berhasil di-copy!");
+    }
+
+    function redirectPromo() {
+      window.location.href = "https://instagram.com/tomorocoffee.id"; // GANTI KE IG KAMU
+    }
+  </script>
+
+</body>
+</html>
