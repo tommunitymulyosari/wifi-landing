@@ -4,39 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tomoro Coffee WiFi</title>
-  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <link rel="icon" href="images/icon.png">
 
   <style>
     body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #3e2723, #1b1b1b);
-  color: white;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  min-height: 100vh; /* penting */
-  padding: 16px;
-}
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #3e2723, #1b1b1b);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 16px;
+    }
 
     .container {
-  text-align: center;
-  background: rgba(255,255,255,0.05);
-  padding: 24px;
-  border-radius: 20px;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-
-  animation: fadeIn 0.6s ease;
-  width: 100%;
-  max-width: 380px; /* lebih kecil biar pas di HP */
-}
+      text-align: center;
+      background: rgba(255,255,255,0.05);
+      padding: 24px;
+      border-radius: 20px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      width: 100%;
+      max-width: 380px;
+    }
 
     .logo {
-      width: 150px;
-      margin-bottom: 15px;
+      width: 130px;
+      margin-bottom: 10px;
     }
 
     h1 {
@@ -44,28 +41,33 @@
       font-size: 22px;
     }
 
+    .desc {
+      font-size: 13px;
+      opacity: 0.7;
+      margin-bottom: 15px;
+    }
+
     .wifi-box {
       background: rgba(255,255,255,0.08);
       padding: 15px;
       border-radius: 12px;
       margin-bottom: 20px;
-      font-size: 16px;
+      font-size: 14px;
     }
 
     button {
-      padding: 12px;
+      padding: 14px;
       border: none;
       border-radius: 999px;
       font-size: 15px;
       cursor: pointer;
       width: 100%;
       margin-top: 10px;
-      transition: 0.3s;
     }
 
     .primary {
-      background: #ff6e35;
-      color: black;
+      background: #ff7a3d;
+      color: white;
       font-weight: bold;
     }
 
@@ -78,68 +80,81 @@
     .footer {
       font-size: 11px;
       opacity: 0.5;
-      margin-top: 10px;
-
+      margin-top: 15px;
       display: flex;
-      align-items: center;
       justify-content: center;
-      gap: 5px;
+      align-items: center;
+      gap: 6px;
     }
 
     .footer-icon {
-      width: 30px;
-      height: 30px;
-      opacity: 100;
+      width: 14px;
+      height: 14px;
     }
 
-    @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-    
-    @media (max-height: 700px) {
-  body {
-    align-items: flex-start;
-  }
-  button {
-  padding: 14px;
-  font-size: 16px; /* biar gampang dipencet */
-  }
-  .container {
-  animation: fadeIn 0.6s ease;
+    .popup {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+
+  display: none;
+  justify-content: center;
+  align-items: center;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* CONTAINER */
+.popup-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+/* GAMBAR */
+.popup-content img {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain; /* penting biar nggak kepotong */
+  border-radius: 12px;
+}
+
+/* CLOSE BUTTON */
+.close {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  background: #ff7a3d;
+  color: white;
+  font-size: 18px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
   </style>
 </head>
+
 <body>
 
   <div class="container">
 
-    <!-- LOGO -->
-    <img src="images/mulyosari.png" class="logo" alt="Tomoro Coffee">
+    <img src="images/tomoro.png" class="logo">
 
     <h1>Free WiFi Access</h1>
-    <p style="font-size:13px; opacity:0.7; margin:5px 0 20px;">
-  Cukup dengan 1 cup, Anda sudah ikut mendukung kenyamanan WiFi di Tomoro Coffee ☕
-</p>
+
+    <div class="desc">
+      Cukup dengan 1 cup, Anda sudah ikut mendukung kenyamanan WiFi di Tomoro Coffee ☕
+    </div>
 
     <div class="wifi-box">
       <p><strong>SSID:</strong> Tommunity Mulyosari</p>
@@ -148,12 +163,15 @@
     </div>
 
     <button class="primary" onclick="connectWifi()">Connect WiFi</button>
-    <button class="secondary" onclick="redirectPromo()">Bundling Mahasiswa Ber-5</button>
+
+    <button class="secondary" onclick="openPopup()">
+      Bundling Mahasiswa Ber-5
+      </button>
 
     <div class="footer">
-  <img src="images/favicon.png" class="footer-icon">
-  Powered by Tomoro Coffee - Mulyosari
-</div>
+      <img src="images/icon.png" class="footer-icon">
+      Powered by Tomoro Coffee - Mulyosari
+    </div>
 
   </div>
 
@@ -163,12 +181,10 @@
 
       if (ua.includes("android")) {
         window.location.href = "intent:#Intent;action=android.settings.WIFI_SETTINGS;end";
-      } 
-      else if (ua.includes("iphone") || ua.includes("ipad")) {
-        alert("Buka Settings > WiFi lalu pilih 'Tommunity Mulyosari'");
-      } 
-      else {
-        alert("Silakan buka pengaturan WiFi dan pilih jaringan.");
+      } else if (ua.includes("iphone")) {
+        alert("Buka Settings > WiFi lalu pilih jaringan.");
+      } else {
+        alert("Silakan buka pengaturan WiFi.");
       }
     }
 
@@ -177,11 +193,24 @@
       navigator.clipboard.writeText(password);
       alert("Password berhasil di-copy!");
     }
+    function openPopup() {
+  document.getElementById("popup").style.display = "flex";
+    }
 
-    function redirectPromo() {
-      window.location.href = "https://drive.google.com/file/d/1gbg7VV3wkRjstl1wlX3bxl6ROxcU9Mw2/view?usp=drivesdk"; // GANTI KE IG KAMU
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
     }
   </script>
 
+  <!-- POPUP PROMO -->
+<div id="popup" class="popup">
+  <div class="popup-content">
+    
+    <span class="close" onclick="closePopup()">&times;</span>
+
+    <img src="images/bundling.png" alt="Promo">
+
+  </div>
+</div>
 </body>
 </html>
