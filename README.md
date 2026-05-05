@@ -40,7 +40,7 @@ Silakan edit bagian berikut di `index.html`:
 
 ```html
 SSID: Tommunity Mulyosari
-Password: PesanDulu
+Password: -
 ```
 
 ### Redirect Promo
